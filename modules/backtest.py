@@ -124,7 +124,7 @@ def plot_model_across_frameworks(backtest_result, model_name):
     plt.show()
 
 
-def plot_framework_model_comparison(backtest_result):
+def plot_framework_model_comparison_backtest(backtest_result):
     metrics = ["auc", "avg_precision", "brier"]
     titles = ["AUC", "Average Precision", "Brier Score"]
 
