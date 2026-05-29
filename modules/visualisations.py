@@ -111,6 +111,7 @@ def plot_evaluate_model(metrics, model_name, threshold):
         colorbar=False
     )
     axes[1, 0].set_title(f"Confusion Matrix (threshold={threshold})")
+    axes[1, 0].grid(False)
     # Importance
     importances.tail(15).plot(kind='barh', ax=axes[1, 1])
     axes[1, 1].axvline(0, color='black', linestyle='--', linewidth=1)

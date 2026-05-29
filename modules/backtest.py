@@ -122,3 +122,33 @@ def plot_model_across_frameworks(backtest_result, model_name):
         axes[i].legend()
     plt.tight_layout()
     plt.show()
+
+
+def plot_framework_model_comparison(backtest_result):
+    metrics = ["auc", "avg_precision", "brier"]
+    titles = ["AUC", "Average Precision", "Brier Score"]
+
+    framework_names = list(backtest_result.keys())
+    n_frameworks = len(framework_names)
+
+    fig, axes = plt.subplots(n_frameworks, 3,
+        figsize=(18, 3*n_frameworks), squeeze=False)
+    fig.suptitle("Backtest Comparison Across Frameworks", fontweight="bold")
+    for row_idx, framework_name in enumerate(framework_names):
+        framework_results = backtest_result[framework_name]
+        for col_idx, (metric, title) in enumerate(zip(metrics, titles)):
+            ax = axes[row_idx, col_idx]
+            for model_name, df in framework_results.items():
+                ax.plot(df["fold"], df[metric],
+                    marker="o", linewidth=2, label=model_name)
+            # titles only on top row
+            if row_idx == 0:
+                ax.set_title(title, fontweight="bold")
+            # framework labels on left
+            if col_idx == 0:
+                ax.set_ylabel(framework_name)
+            ax.set_xlabel("Fold")
+            ax.grid(True, alpha=0.3)
+            ax.legend()
+    plt.tight_layout()
+    plt.show()

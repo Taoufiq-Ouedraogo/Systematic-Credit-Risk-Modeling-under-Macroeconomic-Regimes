@@ -122,7 +122,6 @@ def test_candidate_models(X_train, y_train, X_test, y_test, threshold):
             max_iter=5000, class_weight=cw, n_jobs=-1,
             random_state=SEED
         ),
-        "lda": LinearDiscriminantAnalysis(),
         # TREES MODELS
         "decision_tree": DecisionTreeClassifier(
             max_depth=5, class_weight=cw, random_state=SEED
