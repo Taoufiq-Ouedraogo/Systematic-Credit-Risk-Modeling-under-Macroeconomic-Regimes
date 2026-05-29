@@ -103,5 +103,41 @@ We evaluate models across multiple dimensions:
 - Uses **unsupervised learning** to detect market regimes
 - Evaluates models across **different economic states**
 - Provides a **reproducible, open-source framework**
-- Includes **stress testing under crisis scenarios**
+- Includes **backtesting and stress testing under crisis scenarios**
 
+
+
+--
+
+___________
+
+## Conclusion
+
+
+| Finding | Insight |
+|--------|----------|
+| Macro variables have minimal standalone value | Going from Framework 1 to Framework 2 shows negligible AUC change across models; macro features behave like weak time proxies with low variation and high collinearity |
+| Regime signal drives gains in linear model | Framework 3 improves Logistic Regression significantly; linear models exploit compressed regime structure while tree models show no measurable gain |
+| Tree models are feature-engineering insensitive | XGBoost, Random Forest, and Decision Tree remain stable across frameworks since they already capture nonlinear interactions internally, making added macro or regime inputs largely redundant |
+| Temporal instability dominates evaluation | All models show a sharp performance drop in the final fold driven by dataset shift or structural break, not model or feature choice |
+| Representation quality determines macro/regime usefulness | Raw macro variables add little signal, while regime encoding provides a compact informative summary that benefits linear models most |
+
+<br>
+
+### Practical Conclusion
+
+The most robust and deployable specification is:
+
+> **Logistic Regression with Framework 3 features**
+
+<br>
+
+It provides:
+* The best balance of predictive performance and stability
+* Meaningful macro sensitivity
+* Improved interpretability and regulatory alignment
+* Better calibrated probabilities in economically relevant PD ranges
+
+Other models either:
+* Do not improve with added structure (tree-based models)
+* or, lack macro sensitivity without regime compression (Framework 1/2 logistic regression)
