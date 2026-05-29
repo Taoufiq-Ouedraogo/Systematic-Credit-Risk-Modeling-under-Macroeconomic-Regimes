@@ -1,4 +1,4 @@
-# Quantitative-Macro-Credit-Risk-Modeling
+# Systematic Credit Risk Modeling under Macroeconomic Regimes
 ---------------
 
 
